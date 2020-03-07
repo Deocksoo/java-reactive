@@ -4,12 +4,16 @@ import org.junit.jupiter.api.Test;
 import org.reactivestreams.Publisher;
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
+import toby.reacitve.reactive.basic.Pub;
+import toby.reacitve.reactive.basic.Sub;
 
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 class PubSubTest {
 
@@ -84,5 +88,17 @@ class PubSubTest {
 
         es.awaitTermination(10, TimeUnit.HOURS);
         es.shutdown();
+    }
+
+    @Test
+    void pubSub() {
+        Iterable<Integer> iter = Stream.iterate(1, a -> a + 1).limit(10).
+                collect(Collectors.toList());
+
+        Publisher publisher = new Pub(iter);
+        Subscriber subscriber = new Sub();
+
+        publisher.subscribe(subscriber);
+
     }
 }
