@@ -25,10 +25,10 @@ jobs:
         run: echo ${{ steps.mystep.outputs.matrix }}
       - name: echo0
         run: echo ${{ fromJson(steps.mystep.outputs.matrix) }}
-      - name: echo1
-        run: |
-          res=fromJson(steps.mystep.outputs.matrix)
-          echo ${{ res.deploymentId }}
+      #- name: echo1
+      #  run: |
+      #    res=fromJson(steps.mystep.outputs.matrix)
+      #    echo ${{ res.deploymentId }}
       - name: echo2
         run: echo ${{ fromJson(steps.mystep.outputs.matrix).deploymentId }}
         
