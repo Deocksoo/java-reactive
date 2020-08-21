@@ -25,7 +25,7 @@ jobs:
 
     - name: echo
       run: |
-        res=${{ fromJson({ \"deploymentId\": \"d-SK5T21K55\" }) }}
+        res=${{ fromJson("\{ \"deploymentId\": \"d-SK5T21K55\" \}") }}
         echo $res.deploymentId
 
     - name: sleep
