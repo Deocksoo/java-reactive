@@ -19,23 +19,19 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - id: mystep
+        run: echo "::set-output name=matrix::{\"include\":[{\"project\":\"foo\",\"config\":\"Debug\"},{\"project\":\"bar\",\"config\":\"Release\"}]}"
+      - name: echo
+        run: echo ${{ steps.mystep.outputs.matrix }}
 
-    # Runs a set of commands using the runners shell
-
-    - name: echo
-      run: |
-        res=${{ fromJson("\{ \"deploymentId\": \"d-SK5T21K55\" \}") }}
-        echo $res.deploymentId
-
-    - name: sleep
-      run: |
-        for i in 3
-        do
-          echo $i
-          if [[ $i == 2 ]]; then
-            break
-          fi
-          sleep $i
-        done
+      - name: sleep
+        run: |
+          for i in 3
+          do
+            echo $i
+            if [[ $i == 2 ]]; then
+              break
+            fi
+            sleep $i
+          done
         
