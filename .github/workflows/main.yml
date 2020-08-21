@@ -28,7 +28,7 @@ jobs:
       - name: echo1-2
         run: |
           res=${{ fromJson(steps.mystep.outputs.matrix) }}
-          echo $res.deploymentId
+          echo "$res.deploymentId"
       - name: echo2
         run: echo ${{ fromJson(steps.mystep.outputs.matrix).deploymentId }}
         
