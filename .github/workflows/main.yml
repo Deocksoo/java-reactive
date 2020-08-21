@@ -22,9 +22,15 @@ jobs:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
 
     # Runs a set of commands using the runners shell
+
+    - name: echo
+      run: |
+         res=$(echo "aa")
+         echo $res
+
     - name: sleep
       run: |
-        for i in 3 3 3 2 4 4 4 4 4
+        for i in 3
         do
           echo $i
           if [[ $i == 2 ]]; then
