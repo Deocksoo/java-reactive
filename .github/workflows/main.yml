@@ -24,9 +24,12 @@ jobs:
     # Runs a set of commands using the runners shell
     - name: sleep
       run: |
-        for i in 3 3 3 3 3 3 3 3 3 3 3
+        for i in 3 3 3 2 4 4 4 4 4
         do
           echo $i
+          if [[ $i == 2 ]]; then
+            break
+          fi
           sleep $i
         done
         
