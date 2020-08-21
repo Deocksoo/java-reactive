@@ -20,10 +20,18 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - id: mystep
-        run: echo "::set-output name=matrix::{\"include\":[{\"project\":\"foo\",\"config\":\"Debug\"},{\"project\":\"bar\",\"config\":\"Release\"}]}"
+        run: echo "::set-output name=matrix::{\"deploymentId\":\"d-SK5T21K55\"}"
       - name: echo
         run: echo ${{ steps.mystep.outputs.matrix }}
-
+      - name: echo0
+        run: echo ${{ fromJson(steps.mystep.outputs.matrix) }}
+      - name: echo1
+        run: |
+          res=fromJson(steps.mystep.outputs.matrix)
+          echo ${{ res.deploymentId }}
+      - name: echo2
+        run: echo ${{ fromJson(steps.mystep.outputs.matrix).deploymentId }}
+        
       - name: sleep
         run: |
           for i in 3
