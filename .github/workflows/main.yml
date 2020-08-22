@@ -5,10 +5,12 @@ name: CI
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
 on:
-  push:
-    branches: [ action-prac ]
-  pull_request:
-    branches: [ action-prac ]
+  workflow_dispatch:
+    inputs:
+      timeout:         
+        description: 'CodeDeploy Deployment Timeout (second)'
+        required: true
+        default: 10
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -34,12 +36,11 @@ jobs:
         
       - name: sleep
         run: |
-          for i in 3
+          i=0
+          while [[ i -lt {{ github.event.inputs.timeout }} ]]
           do
             echo $i
-            if [[ $i == 2 ]]; then
-              break
-            fi
-            sleep $i
+            i=$($i+1)
+            sleep 3
           done
         
