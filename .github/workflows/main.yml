@@ -38,11 +38,11 @@ jobs:
         
       - name: sleep
         run: |
-          i=$(2)
+          i=2
           while [[ $i -lt {{ github.event.inputs.timeout }} ]]
           do
             echo $i
-            i=$($i+1)
+            i=$(($i+1))
             sleep 3
           done
         
