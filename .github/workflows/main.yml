@@ -44,6 +44,9 @@ jobs:
           do
             echo $i
             i=$(($i+1))
+            if [[ $i == 11 ]]; then
+              break
+            fi
             sleep $unit
           done
         
