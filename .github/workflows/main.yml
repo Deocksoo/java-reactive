@@ -39,7 +39,7 @@ jobs:
       - name: sleep
         run: |
           i=2
-          unit=3
+          status_check_time_unit=3
           while [[ $i -lt ${{ github.event.inputs.timeout }} ]]
           do
             echo $i
@@ -47,6 +47,6 @@ jobs:
             if [[ $i == 11 ]]; then
               break
             fi
-            sleep $unit
+            sleep $status_check_time_unit
           done
         
